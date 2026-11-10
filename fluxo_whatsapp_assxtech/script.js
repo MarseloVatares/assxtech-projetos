@@ -1,119 +1,22 @@
-const chat = document.getElementById('chat');
-const initialChat = chat.innerHTML;
-
-const flows = {
-  orcamento: {
-    question: 'Quero solicitar um orçamento.',
-    answer: 'Claro! Para preparar seu orçamento, precisamos entender o que você procura.\\n\\nQual serviço ou produto deseja contratar?',
-    options: [
-      ['Informar o que preciso', 'detalhes'],
-      ['Voltar ao menu principal', 'menu'],
-      ['Falar com atendente', 'atendente']
-    ]
-  },
-  suporte: {
-    question: 'Preciso de suporte técnico.',
-    answer: 'Vamos ajudar! Para direcionar seu atendimento, escolha a situação:',
-    options: [
-      ['Computador ou equipamento', 'computador'],
-      ['Sistema ou acesso', 'sistema'],
-      ['Voltar ao menu principal', 'menu'],
-      ['Falar com atendente', 'atendente']
-    ]
-  },
-  duvidas: {
-    question: 'Tenho uma dúvida geral.',
-    answer: 'Sem problemas. Você pode consultar as informações principais ou falar com nossa equipe.',
-    options: [
-      ['Consultar informações', 'informacoes'],
-      ['Falar com atendente', 'atendente'],
-      ['Voltar ao menu principal', 'menu']
-    ]
-  },
-  atendente: {
-    question: 'Quero falar com um atendente.',
-    answer: 'Certo! Na operação real, esta opção encaminharia a conversa para a equipe responsável.\\n\\nDeixe seu nome e um resumo do que precisa para facilitar o atendimento.',
-    options: [['Voltar ao menu principal', 'menu']]
-  },
-  detalhes: {
-    question: 'Informar o que preciso.',
-    answer: 'Perfeito. Na próxima etapa, o fluxo solicitaria os dados de contato e os detalhes do pedido. Depois, a solicitação seria encaminhada para a equipe comercial.',
-    options: [['Falar com atendente', 'atendente'], ['Voltar ao menu principal', 'menu']]
-  },
-  computador: {
-    question: 'Computador ou equipamento.',
-    answer: 'Entendi. O fluxo registraria o tipo de equipamento, o problema apresentado e a melhor forma de contato. Se necessário, a equipe técnica daria continuidade ao atendimento.',
-    options: [['Falar com atendente', 'atendente'], ['Voltar ao menu principal', 'menu']]
-  },
-  sistema: {
-    question: 'Sistema ou acesso.',
-    answer: 'Entendi. Para direcionar corretamente, a equipe precisaria saber qual sistema está apresentando problema e qual mensagem aparece na tela.',
-    options: [['Falar com atendente', 'atendente'], ['Voltar ao menu principal', 'menu']]
-  },
-  informacoes: {
-    question: 'Consultar informações.',
-    answer: 'Este espaço pode apresentar horário de atendimento, endereço, serviços disponíveis e perguntas frequentes da empresa.',
-    options: [['Falar com atendente', 'atendente'], ['Voltar ao menu principal', 'menu']]
-  }
-};
-
-function addBubble(text, type) {
-  const bubble = document.createElement('div');
-  bubble.className = `bubble ${type}`;
-  bubble.textContent = text;
-  const time = document.createElement('time');
-  time.textContent = 'Agora';
-  bubble.appendChild(time);
-  chat.appendChild(bubble);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-function showOptions(options) {
-  const bubble = document.createElement('div');
-  bubble.className = 'bubble incoming menu';
-  const title = document.createElement('b');
-  title.textContent = 'Como deseja continuar?';
-  bubble.appendChild(title);
-  options.forEach(([label, key]) => {
-    const button = document.createElement('button');
-    button.className = 'choice';
-    button.textContent = label;
-    button.addEventListener('click', () => choose(key, label));
-    bubble.appendChild(button);
-  });
-  const time = document.createElement('time');
-  time.textContent = 'Agora';
-  bubble.appendChild(time);
-  chat.appendChild(bubble);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-function choose(key, label) {
-  if (key === 'menu') {
-    addBubble(label, 'outgoing');
-    addBubble('Vamos recomeçar. Como podemos ajudar você?', 'incoming');
-    showOptions([
-      ['1 · Solicitar orçamento', 'orcamento'],
-      ['2 · Suporte técnico', 'suporte'],
-      ['3 · Dúvidas gerais', 'duvidas'],
-      ['4 · Falar com atendente', 'atendente']
-    ]);
-    return;
-  }
-  addBubble(label, 'outgoing');
-  const flow = flows[key];
-  if (!flow) return;
-  if (flow.question !== label) addBubble(flow.question, 'outgoing');
-  addBubble(flow.answer, 'incoming');
-  showOptions(flow.options);
-}
-
-document.querySelectorAll('.choice[data-choice]').forEach(button => {
-  button.addEventListener('click', () => choose(button.dataset.choice, button.textContent));
-});
-document.getElementById('restart').addEventListener('click', () => {
-  chat.innerHTML = initialChat;
-  chat.querySelectorAll('.choice[data-choice]').forEach(button => {
-    button.addEventListener('click', () => choose(button.dataset.choice, button.textContent));
-  });
-});
+const chat=document.getElementById('chat');
+const WHATSAPP='5591982653277';
+const MAPS='https://www.google.com/maps/search/?api=1&query=Alameda%20Bora%20Barbosa%2C%2006%2C%20Bel%C3%A9m%2C%20PA%2C%2066025-690';
+const PRICES=[['Formatação de computador','R$ 100,00'],['Limpeza interna','R$ 80,00'],['Limpeza e troca de pasta térmica','R$ 120,00'],['Instalação de programas','A partir de R$ 30,00'],['Montagem de computador','A partir de R$ 150,00'],['Instalação de SSD','A partir de R$ 50,00'],['Diagnóstico técnico','A partir de R$ 40,00']];
+let customerName='',request={};
+function scroll(){chat.scrollTop=chat.scrollHeight}
+function bubble(msg,type='incoming'){const el=document.createElement('div');el.className='bubble '+type;el.textContent=msg;const t=document.createElement('time');t.textContent='Agora';el.appendChild(t);chat.appendChild(el);scroll()}
+function options(items,title='Como deseja continuar?'){const el=document.createElement('div');el.className='bubble incoming menu';const b=document.createElement('b');b.textContent=title;el.appendChild(b);items.forEach(([label,fn])=>{const x=document.createElement('button');x.type='button';x.className='choice';x.textContent=label;x.addEventListener('click',fn);el.appendChild(x)});chat.appendChild(el);scroll()}
+function form(fields,label,done){const f=document.createElement('form');f.className='chat-form';fields.forEach(a=>{const x=a.area?document.createElement('textarea'):document.createElement('input');x.name=a.name;x.placeholder=a.placeholder;x.required=a.required!==false;if(!a.area)x.type=a.type||'text';if(a.max)x.maxLength=a.max;f.appendChild(x)});const btn=document.createElement('button');btn.type='submit';btn.textContent=label;f.appendChild(btn);f.addEventListener('submit',e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));f.remove();done(d)});chat.appendChild(f);scroll()}
+function menu(){bubble('Prazer, '+customerName+'! Como podemos ajudar?');options([['1 · Serviços e valores',services],['2 · Solicitar manutenção / orçamento',requestStart],['3 · Dúvidas frequentes',faq],['4 · Falar com atendente',attendant],['5 · Endereço e localização',locationInfo]],'Menu principal')}
+function services(){bubble('Confira nossos serviços e valores iniciais:\n\n'+PRICES.map((p,i)=>(i+1)+'. '+p[0]+' — '+p[1]).join('\n')+'\n\nO valor final pode mudar após avaliação técnica.');options([['Solicitar um serviço',requestStart],['Dúvidas frequentes',faq],['Falar com atendente',attendant],['Voltar ao menu',menu]])}
+function faq(){bubble('Selecione sua dúvida:');options([['Quanto tempo demora?',()=>answer('O prazo depende do defeito, da avaliação e da disponibilidade de peças. A equipe informa uma previsão após analisar o equipamento.')],['O orçamento é aprovado antes?',()=>answer('Sim. O serviço só deve ser realizado após a apresentação do orçamento e a aprovação do cliente.')],['Atendem computadores e notebooks?',()=>answer('Sim. Trabalhamos com manutenção de computadores de mesa e notebooks.')],['Tem garantia?',()=>answer('As condições de garantia são informadas conforme o serviço executado e as peças utilizadas. Consulte a atendente.')],['Como solicitar atendimento?',requestStart],['Voltar ao menu',menu]])}
+function answer(msg){bubble(msg);options([['Ver outras dúvidas',faq],['Solicitar atendimento',requestStart],['Voltar ao menu',menu]])}
+function requestStart(){request={};bubble('Vamos registrar seus dados para preparar uma pré ordem de serviço. Qual serviço você procura?');options([['Formatação',()=>service('Formatação')],['Limpeza / pasta térmica',()=>service('Limpeza / pasta térmica')],['Manutenção / diagnóstico',()=>service('Manutenção / diagnóstico')],['Upgrade / instalação de SSD ou memória',()=>service('Upgrade / instalação de SSD ou memória')],['Montagem de computador',()=>service('Montagem de computador')],['Outro serviço / não sei identificar',()=>service('Outro serviço / não sei identificar')]])}
+function service(v){request.service=v;bubble(v,'outgoing');bubble('Qual equipamento precisa de atendimento?');options([['Computador de mesa (desktop)',()=>equipment('Computador de mesa')],['Notebook',()=>equipment('Notebook')],['Outro equipamento',()=>equipment('Outro equipamento')]])}
+function equipment(v){request.equipment=v;bubble(v,'outgoing');form([{name:'brand',placeholder:'Marca e modelo (se souber)',required:false,max:100}],'Continuar',d=>{request.brand=d.brand.trim()||'Não informado';bubble('Descreva o defeito ou o que precisa ser feito.');form([{name:'problem',placeholder:'Ex.: não liga, está lento, tela sem imagem...',area:true,max:600}],'Enviar descrição',p=>{request.problem=p.problem.trim();bubble(request.problem,'outgoing');bubble('Qual a urgência?');options([['O quanto antes',()=>finish('O quanto antes')],['Nos próximos dias',()=>finish('Nos próximos dias')],['Sem urgência',()=>finish('Sem urgência')]])})})}
+function finish(v){request.urgency=v;bubble(v,'outgoing');const msg='PRÉ ORDEM DE SERVIÇO — ASSXTECH\nCliente: '+customerName+'\nServiço: '+request.service+'\nEquipamento: '+request.equipment+'\nMarca/modelo: '+request.brand+'\nProblema relatado: '+request.problem+'\nUrgência: '+request.urgency+'\n\nRegistro inicial baseado nas informações do cliente. O diagnóstico técnico e o orçamento dependem da avaliação da assistência.';bubble('Confira os dados da sua solicitação:\n\n'+msg);options([['Enviar solicitação pelo WhatsApp',()=>whatsapp(msg)],['Falar com atendente',attendant],['Voltar ao menu',menu]],'Deseja encaminhar sua solicitação?')}
+function whatsapp(msg){window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank','noopener');bubble('O WhatsApp foi aberto com a mensagem preenchida. Confira os dados e toque em enviar para concluir.');options([['Voltar ao menu',menu]])}
+function attendant(){bubble('Toque abaixo para falar diretamente com nossa atendente.');options([['Abrir WhatsApp da assistência',()=>whatsapp('Olá! Meu nome é '+customerName+'. Gostaria de falar com uma atendente da ASSXTECH.')],['Voltar ao menu',menu]])}
+function locationInfo(){bubble('Endereço: Alameda Bora Barbosa, 06, CEP 66025-690, Belém/PA.');options([['Abrir Google Maps',()=>window.open(MAPS,'_blank','noopener')],['Falar com atendente',attendant],['Voltar ao menu',menu]])}
+function start(){customerName='';request={};chat.innerHTML='<div class="day-label">ATENDIMENTO</div>';bubble('Olá! Seja bem-vindo(a) à ASSXTECH Assistência Técnica. Para começar, como podemos chamar você?');form([{name:'name',placeholder:'Digite seu nome',max:60}],'Continuar',d=>{customerName=d.name.trim();if(customerName){bubble(customerName,'outgoing');menu()}})}
+document.getElementById('restart').addEventListener('click',start);start();
