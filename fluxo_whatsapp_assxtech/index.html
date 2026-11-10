@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Demonstração de fluxo automatizado de atendimento via WhatsApp.">
+  <title>Fluxo de Atendimento | Demonstração</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">WA</span><span>Atendimento <b>Digital</b></span></div>
+      <span class="demo-tag">PROJETO DEMONSTRATIVO</span>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">AUTOMAÇÃO DE ATENDIMENTO</p>
+      <h1>Fluxo de atendimento<br><span>via WhatsApp</span></h1>
+      <p class="lead">Demonstração de um fluxo automatizado para receber clientes, identificar a necessidade e direcionar o atendimento.</p>
+      <div class="features">
+        <span>✓ Menu inicial</span><span>✓ Triagem de solicitações</span><span>✓ Encaminhamento</span>
+      </div>
+    </section>
+
+    <section class="demo-layout" aria-label="Demonstração interativa">
+      <div class="info-panel">
+        <p class="eyebrow">COMO FUNCIONA</p>
+        <h2>Um atendimento mais organizado</h2>
+        <ol class="steps">
+          <li><span>01</span><div><b>Recepção</b><small>O cliente recebe uma mensagem de boas-vindas.</small></div></li>
+          <li><span>02</span><div><b>Identificação</b><small>Escolhe o assunto que deseja resolver.</small></div></li>
+          <li><span>03</span><div><b>Direcionamento</b><small>O fluxo apresenta a orientação adequada.</small></div></li>
+          <li><span>04</span><div><b>Atendimento humano</b><small>Quando necessário, o cliente pode solicitar um atendente.</small></div></li>
+        </ol>
+        <p class="note">Esta é uma simulação navegável para apresentação do projeto. Não está conectada à API oficial do WhatsApp.</p>
+      </div>
+
+      <div class="phone">
+        <div class="phone-head">
+          <div class="avatar">AD</div>
+          <div class="contact"><b>Atendimento Digital</b><small><i></i> Demonstração online</small></div>
+          <span class="dots">•••</span>
+        </div>
+        <div class="chat" id="chat" aria-live="polite">
+          <div class="day-label">HOJE</div>
+          <div class="bubble incoming">Olá! Seja bem-vindo(a) ao nosso atendimento. Como podemos ajudar você hoje?<time>Agora</time></div>
+          <div class="bubble incoming menu">
+            <b>Digite ou selecione uma opção:</b>
+            <button class="choice" data-choice="orcamento">1 · Solicitar orçamento</button>
+            <button class="choice" data-choice="suporte">2 · Suporte técnico</button>
+            <button class="choice" data-choice="duvidas">3 · Dúvidas gerais</button>
+            <button class="choice" data-choice="atendente">4 · Falar com atendente</button>
+            <time>Agora</time>
+          </div>
+        </div>
+        <div class="chat-footer">
+          <span>↗</span><div class="fake-input">Escolha uma opção acima</div><span class="send">➤</span>
+        </div>
+        <button class="restart" id="restart">Reiniciar demonstração</button>
+      </div>
+    </section>
+
+    <footer>Projeto demonstrativo de fluxo conversacional · HTML, CSS e JavaScript</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

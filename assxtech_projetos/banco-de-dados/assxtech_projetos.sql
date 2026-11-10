@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS assxtech_projetos
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE assxtech_projetos;
+
+CREATE TABLE IF NOT EXISTS products (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(140) NOT NULL,
+  sku VARCHAR(50) NULL,
+  category VARCHAR(80) NULL,
+  quantity INT UNSIGNED NOT NULL DEFAULT 0,
+  price DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_products_sku (sku)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS transactions (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  description VARCHAR(160) NOT NULL,
+  type ENUM('income','expense') NOT NULL,
+  category VARCHAR(80) NULL,
+  amount DECIMAL(12,2) NOT NULL,
+  movement_date DATE NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_transactions_date (movement_date),
+  INDEX idx_transactions_type (type)
+) ENGINE=InnoDB;

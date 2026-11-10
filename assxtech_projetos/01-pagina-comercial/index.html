@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Soluções práticas para sua empresa. Fale com nossa equipe pelo WhatsApp.">
+  <title>Conecta Soluções | Atendimento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">C</span> conecta<span>soluções</span></a>
+    <nav><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a><a class="nav-cta" href="#contato">Fale conosco</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Soluções para o seu negócio</span>
+        <h1>Seu próximo passo começa com uma boa <em>conexão.</em></h1>
+        <p>Ajudamos pessoas e empresas a encontrar soluções simples, atendimento próximo e resultados que fazem diferença.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#contato">Solicitar atendimento <span>↗</span></a>
+          <a class="text-link" href="#servicos">Conhecer serviços</a>
+        </div>
+        <div class="proof"><span class="proof-dot"></span> Atendimento rápido e personalizado</div>
+      </div>
+      <div class="hero-art" aria-label="Ilustração abstrata de conexão">
+        <div class="orb orb-one"></div><div class="orb orb-two"></div>
+        <div class="art-card card-main"><div class="card-icon">✦</div><span>Ideias que conectam</span><strong>Do planejamento à solução.</strong><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="art-card card-float"><span class="online"></span><div><b>Estamos por aqui</b><small>Prontos para conversar</small></div></div>
+        <div class="art-ring"></div>
+      </div>
+    </section>
+
+    <section class="services section" id="servicos">
+      <div class="section-heading"><span class="eyebrow">O que fazemos</span><h2>Atendimento que entende<br>o que você precisa.</h2></div>
+      <div class="service-grid">
+        <article class="service"><span class="service-number">01</span><div class="service-icon">⌘</div><h3>Consultoria</h3><p>Entendemos seu cenário e indicamos o caminho mais adequado para sua necessidade.</p></article>
+        <article class="service"><span class="service-number">02</span><div class="service-icon">↗</div><h3>Projetos</h3><p>Organizamos ideias e transformamos objetivos em soluções práticas.</p></article>
+        <article class="service"><span class="service-number">03</span><div class="service-icon">◎</div><h3>Suporte</h3><p>Atendimento próximo para orientar você durante cada etapa.</p></article>
+      </div>
+    </section>
+
+    <section class="about section" id="sobre">
+      <div><span class="eyebrow">Nossa forma de trabalhar</span><h2>Clareza no processo.<br><em>Confiança no resultado.</em></h2></div>
+      <p>Nosso compromisso é ouvir primeiro, explicar com clareza e acompanhar cada solicitação com atenção. Queremos que você saiba o que está sendo feito e qual é o próximo passo.</p>
+    </section>
+
+    <section class="contact section" id="contato">
+      <div><span class="eyebrow">Vamos conversar?</span><h2>Conte o que você<br>precisa resolver.</h2><p>Escolha uma opção e continue o atendimento pelo WhatsApp.</p></div>
+      <div class="contact-panel">
+        <label for="name">Como podemos chamar você?</label>
+        <input id="name" type="text" placeholder="Seu nome" maxlength="80">
+        <label for="topic">Qual assunto deseja tratar?</label>
+        <select id="topic"><option value="">Selecione uma opção</option><option>Quero conhecer os serviços</option><option>Solicitar um orçamento</option><option>Preciso de suporte</option><option>Tenho outra dúvida</option></select>
+        <label for="details">Conte um pouco mais (opcional)</label>
+        <textarea id="details" rows="3" placeholder="Escreva sua mensagem..."></textarea>
+        <button class="button primary full" id="send-whatsapp">Continuar no WhatsApp <span>↗</span></button>
+        <small>Ao continuar, o WhatsApp será aberto com sua mensagem preenchida.</small>
+        <p class="form-error" id="error" role="alert"></p>
+      </div>
+    </section>
+  </main>
+  <footer><a class="brand" href="#"><span class="brand-mark">C</span> conecta<span>soluções</span></a><span>© <span id="year"></span> Conecta Soluções. Projeto demonstrativo.</span></footer>
+  <a class="floating-whatsapp" id="floating-whatsapp" href="#contato" aria-label="Fale pelo WhatsApp">☏</a>
+  <script src="script.js"></script>
+</body>
+</html>

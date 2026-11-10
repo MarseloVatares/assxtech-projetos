@@ -1,0 +1,18 @@
+FLUXO DE ATENDIMENTO VIA WHATSAPP — PROJETO DEMONSTRATIVO
+
+Arquivos:
+- index.html: estrutura da demonstração
+- style.css: aparência responsiva
+- script.js: interações e caminhos do fluxo
+
+COMO TESTAR
+1. Extraia a pasta do ZIP.
+2. Abra index.html no navegador.
+3. Clique nas opções dentro da conversa para navegar pelo fluxo.
+4. Use "Reiniciar demonstração" para começar novamente.
+
+PUBLICAÇÃO
+Este projeto é uma demonstração estática em HTML, CSS e JavaScript. Pode ser publicado em uma hospedagem de sites estáticos, como GitHub Pages ou Netlify, sem banco de dados.
+
+IMPORTANTE
+A demonstração simula a experiência de um fluxo de atendimento. Ela NÃO está conectada ao WhatsApp e não envia nem recebe mensagens reais. Uma integração real exige um número comercial, configuração da WhatsApp Business Platform/API e credenciais autorizadas.
